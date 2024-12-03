@@ -50,7 +50,7 @@ def questens():
 	global coller
 	name = input("whats your name adventurer (type your name then press enter to continue): ")
 	coller = input(f"hello {name} whats your favorite color: ")
-	print(f"""hello {name} who likes the color {coller}, your quest is to "find the holy grail" without reaching exhaustion level 5 good luck""")
+	print(f"""hello {name} who likes the color {coller}, your quest is "To seek the Holy Grail" without reaching exhaustion level 5 good luck""")
 def main():
 	global name
 	global exoshtion
@@ -82,6 +82,10 @@ what would you like to do
 				print("you starved to death and killer guinea pigs ate you")
 				print("game over")
 				break
+			if exoshtion > 5:
+				print("you died of exhaustion and carnivorous antelopes ate your earlobes.")
+				print("game over")
+				break
 			event = random.randint(1,3)
 			if event == 3:
 				eventtype = random.randint(1,4)
@@ -93,6 +97,41 @@ what would you like to do
 					print(f"and blew {lose} rations away.")
 					rations-=lose
 				if eventtype == 2:
-					print("a robber came and stol a ration")
+					print("a robber came and stole a ration")
+					rations -=1
+				if eventtype == 3:
+					nam = input("""you come to a rope bridge spanning a casum and a man stops you and says "Stop. Who would cross the Bridge of Death must answer me these questions three, ere the other side he see. What... is your name: """)
+					if nam.lower != name.lower:
+						print("wrong *as you are thrown into the casum*")
+						print("you die and aliens take your body and are disappointed that you cant play poker")
+						print("game over")
+						break
+					else:
+						nam = input("What... is your quest?").lower
+						if "grail" not in nam:
+							print("wrong *as you are thrown into the casum*")
+							print("you die and are turned into a lemon")
+							print("game over")
+							break
 
+						if playedmount >1:
+							nam = input("What... is the air-speed velocity of an unladen swallow: ").lower
+							if nam == "What do you mean? An African or a European swallow?".lower:
+								print(" Huh? I... I don't know that. AUUUUUUUGGGGGGGGGGGHHH!! *as he is thrown into the casum*")
+								print("you successfully make it across the bridge")
+							else:
+								print("wrong *as you are thrown into the casum*")
+								print("you die and a goat gives you a wet willy")
+								print("game over")
+								break
+						else:
+							nam = input("What... is your favorite colour: ").lower
+							if nam != coller:
+								print("wrong *as you are thrown into the casum*")
+								print("you die and billy")
+								print("game over")
+								break
+							else:
+								print("you may pass")
+								print("you make it across the bridge")
 	
