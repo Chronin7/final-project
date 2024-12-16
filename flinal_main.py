@@ -2,7 +2,134 @@ import random #imports
 import time
 import math
 import sys,tty,os,termios
+
+debuging = True
 dropmap = [['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', 'd', 'o', 'n', 't', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', 'h', 'i', 't', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', 't', 'h', 'i', 's', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', '!', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', '!', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', 'V', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', '=', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', '=', '=', ' ', '=', '=', '=', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', '=', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', '=', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', '=', '=', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', '='], 
+['=', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', '=', ' ', '=', ' ', '='], 
+['=', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', '=', ' ', ' ', ' ', ' ', '=', ' ', '=', ' ', '='], 
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', '='], 
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='], 
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', '='], 
+['=', ' ', ' ', '=', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='], 
+['=', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', '=', '='], 
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', '=', ' ', '='], 
+['=', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='], 
+['=', '=', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', '=', ' ', ' ', '='], 
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', '=', ' ', ' ', ' ', ' ', ' ', '='], 
+['=', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', '='], 
+['=', ' ', '=', ' ', ' ', '=', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', '=', ' ', '='], 
+['=', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', '='], 
+['=', ' ', ' ', '=', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', '=', ' ', ' ', '='], 
+['=', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', '=', '='], 
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='], 
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='], 
+['=', ' ', ' ', '=', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', '=', ' ', ' ', '='], 
+['=', ' ', ' ', '=', '=', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', '='], 
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', '=', ' ', ' ', ' ', '=', '=', ' ', ' ', '='], 
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', '=', '='], 
+['=', ' ', ' ', ' ', '=', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', '=', ' ', '='], 
+['=', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', '='], 
+['=', '=', '=', ' ', '=', ' ', '=', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', '=', '='], 
+['=', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', '=', ' ', ' ', ' ', '='], 
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', '=', ' ', ' ', ' ', ' ', ' ', ' ', '='], 
+['=', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', '='], 
+['=', '=', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', '='], 
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', '='], 
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='], 
+['=', ' ', ' ', '=', '=', ' ', ' ', ' ', '=', '=', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', '='], 
+['=', '=', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='], 
+['=', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', '='], 
+['=', ' ', ' ', ' ', '=', ' ', '=', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='], 
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', '='], 
+['=', ' ', '=', ' ', '=', ' ', '=', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='], 
+['=', ' ', ' ', ' ', '=', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', '='], 
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', '='], 
+['=', ' ', ' ', ' ', '=', ' ', '=', ' ', ' ', '=', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='], 
+['=', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', '='], 
+['=', '=', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', '='], 
+['=', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', '='], 
+['=', '=', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', '=', ' ', '=', '=', ' ', ' ', ' ', ' ', ' ', '='], 
+['=', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='], 
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', '='], 
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='], 
+['=', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', '=', ' ', ' ', ' ', ' ', '=', ' ', '='], 
+['=', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', '=', ' ', '=', ' ', '='],
 ['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
 ['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
 ['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
@@ -46,6 +173,9 @@ dropmap = [['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '
 ['=', '=', '=', '=', '=', '=', '=', '=', '=', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
 ['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
 ['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
 ['=', ' ', ' ', ' ', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', ' ', ' ', ' ', '='],
 ['=', '=', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', '=', '='],
 ['=', '=', '=', ' ', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' ', '=', '=', '='],
@@ -58,7 +188,9 @@ dropmap = [['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '
 ['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
 ['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
 ['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
-['=', ' ', ' ', ' ', ' ', ' ', '=', '=', '=', '=', '=', '=', '=', '=', '=', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', '=', '=', '=', '=', '=', '=', ' ', ' ', ' ', ' ', ' ', ' ', '='],
 ['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
 ['=', ' ', ' ', '=', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
 ['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', '=', '=', ' ', ' ', ' ', '='],
@@ -68,7 +200,10 @@ dropmap = [['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '
 ['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', '=', '=', ' ', ' ', '='],
 ['=', ' ', ' ', '=', '=', '=', '=', '=', '=', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
 ['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
-['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', '=', '=', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', ' ', ' ', '='],
 ['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
 ['=', ' ', ' ', '=', '=', '=', '=', '=', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
 ['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
@@ -78,6 +213,8 @@ dropmap = [['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '
 ['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
 ['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', '=', '=', '=', '=', '=', '=', '=', '=', ' ', ' ', '='],
 ['=', ' ', ' ', '=', '=', '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
+['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
 ['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
 ['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
 ['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', '=', '=', '=', '=', '=', ' ', ' ', ' ', ' ', '='],
@@ -108,17 +245,17 @@ dropmap = [['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '
 ['=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', ' ', ' ', '=', '=', '=', '=', '=', '=', '='],
 ['=', '=', '=', '=', '=', '=', '=', '=', '=', '=', ' ', ' ', '=', '=', '=', '=', '=', '=', '=', '='],
 ['=', '=', '=', '=', '=', '=', '=', '=', '=', ' ', ' ', '=', '=', '=', '=', '=', '=', '=', '=', '='],
-['=', '=', '=', '=', '=', '=', '=', '=', ' ', ' ', '=', '=', '=', '=', '=', '=', '=', '=', '=', '='],
-['=', '=', '=', '=', '=', '=', '=', ' ', ' ', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '='],
-['=', '=', '=', '=', '=', '=', ' ', ' ', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '='],
-['=', '=', '=', '=', '=', ' ', ' ', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '='],
-['=', '=', '=', '=', ' ', ' ', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '='],
-['=', '=', '=', '=', '=', ' ', ' ', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '='],
-['=', '=', '=', '=', '=', '=', ' ', ' ', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '='],
-['=', '=', '=', '=', '=', '=', '=', ' ', ' ', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '='],
-['=', '=', '=', '=', '=', '=', '=', '=', ' ', ' ', '=', '=', '=', '=', '=', '=', '=', '=', '=', '='],
-['=', '=', '=', '=', '=', '=', '=', '=', '=', ' ', ' ', '=', '=', '=', '=', '=', '=', '=', '=', '='],
-['=', '=', '=', '=', '=', '=', '=', '=', '=', '=', ' ', ' ', '=', '=', '=', '=', '=', '=', '=', '='],
+['=', '=', '=', '=', '=', '=', '=', '=', ' ', ' ', ' ', '=', '=', '=', '=', '=', '=', '=', '=', '='],
+['=', '=', '=', '=', '=', '=', '=', ' ', ' ', '=', ' ', '=', '=', '=', '=', '=', '=', '=', '=', '='],
+['=', '=', '=', '=', '=', '=', ' ', ' ', '=', '=', ' ', ' ', '=', '=', '=', '=', '=', '=', '=', '='],
+['=', '=', '=', '=', '=', ' ', ' ', '=', '=', '=', '=', ' ', '=', '=', '=', '=', '=', '=', '=', '='],
+['=', '=', '=', '=', ' ', ' ', '=', '=', '=', '=', '=', '=', ' ', '=', '=', '=', '=', '=', '=', '='],
+['=', '=', '=', '=', '=', ' ', ' ', '=', '=', '=', '=', '=', ' ', ' ', '=', '=', '=', '=', '=', '='],
+['=', '=', '=', '=', '=', '=', ' ', ' ', '=', '=', '=', '=', '=', ' ', ' ', '=', '=', '=', '=', '='],
+['=', '=', '=', '=', '=', '=', '=', ' ', ' ', '=', '=', '=', '=', '=', ' ', '=', '=', '=', '=', '='],
+['=', '=', '=', '=', '=', '=', '=', '=', ' ', ' ', '=', '=', '=', ' ', '=', '=', '=', '=', '=', '='],
+['=', '=', '=', '=', '=', '=', '=', '=', '=', ' ', '=', '=', ' ', '=', '=', '=', '=', '=', '=', '='],
+['=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', ' ', ' ', '=', '=', '=', '=', '=', '=', '='],
 ['=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', ' ', ' ', '=', '=', '=', '=', '=', '=', '='],
 ['=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', ' ', ' ', '=', '=', '=', '=', '=', '='],
 ['=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', ' ', ' ', '=', '=', '=', '=', '='],
@@ -191,7 +328,14 @@ dropmap = [['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '
 ['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '[', ']', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
 ['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '/', '\\', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
 ['=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '='],
-['=', '=', '=', '=', '=', '=', '=', '=', '=', '/', '\\', '=', '=', '=', '=', '=', '=', '=', '=', '='],]
+['=', '=', '=', '=', '=', '=', '=', '=', '=', '/', '\\', '=', '=', '=', '=', '=', '=', '=', '=', '='],
+['=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '='],
+['=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '='],
+['=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '='],
+['=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '='],
+['=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '='],
+['=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '='],
+['=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '='],]
 ##########################################################################################################################################################################################################################################
 ##########################################################################################################################################################################################################################################
 ##########################################################################################################################################################################################################################################
@@ -317,8 +461,21 @@ def monbattle(monname):#monster battle status: buggy
 	global good
 	global norm
 	global rearer
-	
-	hp = random.randint(1,100)-rpg
+	if monname == "killer bunny":
+		hp = random.randint(1,20)-rpg
+	else:
+		hp = random.randint(1,100)-rpg
+	if name == "Sir Lancelot":
+		getloot(1)
+		getloot(1)
+		getloot(2)
+		getloot(2)
+		getloot(3)
+		getloot(3)
+		getloot(4)
+		getloot(4)
+		getloot(5)
+		getloot(5)
 	if random.randint(1,20) > 14:
 		damage =random.randint(5,20)
 		print(f"you took {damage} damage from a {monname}")
@@ -351,7 +508,7 @@ def monbattle(monname):#monster battle status: buggy
 				return "live"
 			else:
 				print(f"the {monname} is at {hp} HP")
-			damage =random.randint(5,20)
+			damage =random.randint(1,10)
 			print(f"you took {damage} damage from the {monname}")
 			health -= damage
 		if inp == 2:
@@ -362,7 +519,8 @@ def monbattle(monname):#monster battle status: buggy
 			print("your items you can use")
 			print("0 to return")
 			for x in lootunseen:
-				if "c" in x or "h" in x:
+				if "l" in x or "h" in x:
+
 					prinitera += 1
 					print(prinitera,end=" to use: ")
 					print(loot[itera])
@@ -466,7 +624,7 @@ def feld1():#hard coded squares status: buggy
 			print("your items you can use")
 			print("0 to return")
 			for x in lootunseen:
-				if "c" in x or "h" in x:
+				if "l" in x or "h" in x:
 					prinitera += 1
 					print(prinitera,end=" to use: ")
 					print(loot[itera])
@@ -491,6 +649,12 @@ def feld1():#hard coded squares status: buggy
 					loot.pop(loot[user[inp-1]])
 					lootunseen.pop(lootunseen[user[inp-1]])
 					print(f"you use the luck potion")
+				elif "h" in use[inp-1]:
+					bob = int(use[inp-1][len(use[inp-1]) - 2:])
+					health += int(use[inp-1][len(use[inp-1]) - 2:])
+					loot.pop(loot[user[inp-1]])
+					lootunseen.pop(lootunseen[user[inp-1]])
+					print(f"you heal {bob} you are now at {health}")
 			except:
 				print("error 404: item not found")
 		if desition == 2:
@@ -532,6 +696,7 @@ def feld2():
 	global rearer
 	while True:
 		print("you find yourself in a feald")
+		print()
 		while True:
 			try:
 				if luck > 0:
@@ -540,21 +705,23 @@ def feld2():
 1 to move
 2 to serach for loot
 3 to use item: """))
+				print()
 				if desition in [1,2,3]:
 					break
 				else:
 					inputcorect()
 			except:
 				inputcorect()
-		if inp == 3:
+		if desition == 3:
 			itera = 0
 			prinitera = 0
 			use = []
 			user = []
 			print("your items you can use")
+			print()
 			print("0 to return")
 			for x in lootunseen:
-				if "c" in x or "h" in x:
+				if "l" in x or "h" in x:
 					prinitera += 1
 					print(prinitera,end=" to use: ")
 					print(loot[itera])
@@ -563,13 +730,16 @@ def feld2():
 				itera += 1
 			while True:
 				try:
+					print()
 					inp = int(input("what do you want to use: "))
 					print(len(use))
 					if inp <= itera and inp >-1:
 						break
 					else:
+						print()
 						print("nope")
 				except:
+					print()
 					print("nope")
 				if inp == 0:
 					break
@@ -579,16 +749,27 @@ def feld2():
 					loot.pop(loot[user[inp-1]])
 					lootunseen.pop(lootunseen[user[inp-1]])
 					print(f"you use the luck potion")
+					print()
+				elif "h" in use[inp-1]:
+					add_to_hp = int(use[inp-1][len(use[inp-1]) - 2:])
+					health += int(use[inp-1][len(use[inp-1]) - 2:])
+					loot.pop(loot[user[inp-1]])
+					lootunseen.pop(lootunseen[user[inp-1]])
+					print(f"you heal {add_to_hp} you are now at {health}")
+					print()
 			except:
 				print("error 404: item not found")
+				print()
 		if desition == 2:
 			if looted[1]==False:
 				looted[1]=True
 				temp = getloot(1)
 				loot.append(temp)
 				print(f"you got a {temp}")
+				print()
 			else:
 				print("you dont find anything")
+				print()
 		if desition == 1:
 			while True:
 				try:
@@ -597,6 +778,7 @@ def feld2():
 1 to move east
 2 to move west
 """))
+					print()
 					if desition in [0,1,2]:
 						break
 					else:
@@ -653,38 +835,42 @@ def feld3():
 			except:
 				inputcorect()
 		if desition == 3:
-			itera = 0	
-			prinitera = 0
 			use = []
 			user = []
 			print("your items you can use")
 			print("0 to return")
-			for x in lootunseen:
-				if "c" in x or "h" in x:
-					prinitera += 1
-					print(prinitera,end=" to use: ")
-					print(loot[itera])
-					use.append(loot[itera])
-					user.append(itera)
-				itera += 1
+			lineNumber = 0
+			for i, x in enumerate(lootunseen):
+				if "l" in x or "h" in x:
+					lineNumber += 1
+					print(lineNumber,end=" to use: ")
+					print(loot[i])
+					use.append(loot[i])
+					user.append(i)
 			while True:
 				try:
 					inp = int(input("what do you want to use: "))
 					print(len(use))
-					if inp <= itera and inp >-1:
+					if inp <= lineNumber and inp >= 0:
 						break
 					else:
 						print("nope")
 				except:
 					print("nope")
 				if inp == 0:
-					break
+					return "fe3"
 			try:
 				if "l" in use[inp-1]:
 					luck += int(use[inp-1][len(use[inp-1]) - 1:])
 					loot.pop(loot[user[inp-1]])
 					lootunseen.pop(lootunseen[user[inp-1]])
 					print(f"you use the luck potion")
+				elif "h" in use[inp-1]:
+					bob = int(use[inp-1][len(use[inp-1]) - 2:])
+					health += int(use[inp-1][len(use[inp-1]) - 2:])
+					loot.pop(loot[user[inp-1]])
+					lootunseen.pop(lootunseen[user[inp-1]])
+					print(f"you heal {bob} you are now at {health}")
 			except:
 				print("error 404: item not found")
 		if desition == 2:
@@ -766,7 +952,8 @@ def feld4():
 			print("your items you can use")
 			print("0 to return")
 			for x in lootunseen:
-				if "c" in x or "h" in x:
+				if "l" in x or "h" in x:
+
 					prinitera += 1
 					print(prinitera,end=" to use: ")
 					print(loot[itera])
@@ -778,7 +965,7 @@ def feld4():
 					inp = int(input("what do you want to use: "))
 					print(len(use))
 					if inp <= itera and inp >-1:
-						break
+						return "fe4"
 					else:
 						print("nope")
 				except:
@@ -791,6 +978,12 @@ def feld4():
 					loot.pop(loot[user[inp-1]])
 					lootunseen.pop(lootunseen[user[inp-1]])
 					print(f"you use the luck potion")
+				elif "h" in use[inp-1]:
+					bob = int(use[inp-1][len(use[inp-1]) - 2:])
+					health += int(use[inp-1][len(use[inp-1]) - 2:])
+					loot.pop(loot[user[inp-1]])
+					lootunseen.pop(lootunseen[user[inp-1]])
+					print(f"you heal {bob} you are now at {health}")
 			except:
 				print("error 404: item not found")
 		if desition == 2:
@@ -878,7 +1071,8 @@ def feld5():
 			print("your items you can use")
 			print("0 to return")
 			for x in lootunseen:
-				if "c" in x or "h" in x:
+				if "l" in x or "h" in x:
+
 					prinitera += 1
 					print(prinitera,end=" to use: ")
 					print(loot[itera])
@@ -903,6 +1097,12 @@ def feld5():
 					loot.pop(loot[user[inp-1]])
 					lootunseen.pop(lootunseen[user[inp-1]])
 					print(f"you use the luck potion")
+				elif "h" in use[inp-1]:
+					bob = int(use[inp-1][len(use[inp-1]) - 2:])
+					health += int(use[inp-1][len(use[inp-1]) - 2:])
+					loot.pop(loot[user[inp-1]])
+					lootunseen.pop(lootunseen[user[inp-1]])
+					print(f"you heal {bob} you are now at {health}")
 			except:
 				print("error 404: item not found")
 		if desition == 2:
@@ -984,7 +1184,8 @@ def feld6():
 			print("your items you can use")
 			print("0 to return")
 			for x in lootunseen:
-				if "c" in x or "h" in x:
+				if "l" in x or "h" in x:
+
 					prinitera += 1
 					print(prinitera,end=" to use: ")
 					print(loot[itera])
@@ -1009,6 +1210,12 @@ def feld6():
 					loot.pop(loot[user[inp-1]])
 					lootunseen.pop(lootunseen[user[inp-1]])
 					print(f"you use the luck potion")
+				elif "h" in use[inp-1]:
+					bob = int(use[inp-1][len(use[inp-1]) - 2:])
+					health += int(use[inp-1][len(use[inp-1]) - 2:])
+					loot.pop(loot[user[inp-1]])
+					lootunseen.pop(lootunseen[user[inp-1]])
+					print(f"you heal {bob} you are now at {health}")
 			except:
 				print("error 404: item not found")
 		if desition == 2:
@@ -1089,7 +1296,8 @@ def foothills1():
 			print("your items you can use")
 			print("0 to return")
 			for x in lootunseen:
-				if "c" in x or "h" in x:
+				if "l" in x or "h" in x:
+
 					prinitera += 1
 					print(prinitera,end=" to use: ")
 					print(loot[itera])
@@ -1114,6 +1322,12 @@ def foothills1():
 					loot.pop(loot[user[inp-1]])
 					lootunseen.pop(lootunseen[user[inp-1]])
 					print(f"you use the luck potion")
+				elif "h" in use[inp-1]:
+					bob = int(use[inp-1][len(use[inp-1]) - 2:])
+					health += int(use[inp-1][len(use[inp-1]) - 2:])
+					loot.pop(loot[user[inp-1]])
+					lootunseen.pop(lootunseen[user[inp-1]])
+					print(f"you heal {bob} you are now at {health}")
 			except:
 				print("error 404: item not found")
 		if desition == 2:
@@ -1201,7 +1415,8 @@ def foothills2():
 			print("your items you can use")
 			print("0 to return")
 			for x in lootunseen:
-				if "c" in x or "h" in x:
+				if "l" in x or "h" in x:
+
 					prinitera += 1
 					print(prinitera,end=" to use: ")
 					print(loot[itera])
@@ -1226,6 +1441,12 @@ def foothills2():
 					loot.pop(loot[user[inp-1]])
 					lootunseen.pop(lootunseen[user[inp-1]])
 					print(f"you use the luck potion")
+				elif "h" in use[inp-1]:
+					bob = int(use[inp-1][len(use[inp-1]) - 2:])
+					health += int(use[inp-1][len(use[inp-1]) - 2:])
+					loot.pop(loot[user[inp-1]])
+					lootunseen.pop(lootunseen[user[inp-1]])
+					print(f"you heal {bob} you are now at {health}")
 			except:
 				print("error 404: item not found")
 		if desition == 2:
@@ -1307,7 +1528,8 @@ def foothills3():
 			print("your items you can use")
 			print("0 to return")
 			for x in lootunseen:
-				if "c" in x or "h" in x:
+				if "l" in x or "h" in x:
+
 					prinitera += 1
 					print(prinitera,end=" to use: ")
 					print(loot[itera])
@@ -1332,6 +1554,12 @@ def foothills3():
 					loot.pop(loot[user[inp-1]])
 					lootunseen.pop(lootunseen[user[inp-1]])
 					print(f"you use the luck potion")
+				elif "h" in use[inp-1]:
+					bob = int(use[inp-1][len(use[inp-1]) - 2:])
+					health += int(use[inp-1][len(use[inp-1]) - 2:])
+					loot.pop(loot[user[inp-1]])
+					lootunseen.pop(lootunseen[user[inp-1]])
+					print(f"you heal {bob} you are now at {health}")
 			except:
 				print("error 404: item not found")
 		if desition == 2:
@@ -1414,10 +1642,12 @@ def forest():
 			itera = 0
 			prinitera = 0
 			use = []
+			user=[]
 			print("your items you can use")
 			print("0 to return")
 			for x in lootunseen:
-				if "c" in x or "h" in x:
+				if "l" in x or "h" in x:
+
 					prinitera += 1
 					print(prinitera,end=" to use: ")
 					print(loot[itera])
@@ -1442,6 +1672,12 @@ def forest():
 					loot.pop(loot[user[inp-1]])
 					lootunseen.pop(lootunseen[user[inp-1]])
 					print(f"you use the luck potion")
+				elif "h" in use[inp-1]:
+					bob = int(use[inp-1][len(use[inp-1]) - 2:])
+					health += int(use[inp-1][len(use[inp-1]) - 2:])
+					loot.pop(loot[user[inp-1]])
+					lootunseen.pop(lootunseen[user[inp-1]])
+					print(f"you heal {bob} you are now at {health}")
 			except:
 				print("error 404: item not found")
 		if desition == 2:
@@ -1523,7 +1759,8 @@ def swamp1():
 			print("your items you can use")
 			print("0 to return")
 			for x in lootunseen:
-				if "c" in x or "h" in x:
+				if "l" in x or "h" in x:
+
 					prinitera += 1
 					print(prinitera,end=" to use: ")
 					print(loot[itera])
@@ -1548,6 +1785,12 @@ def swamp1():
 					loot.pop(loot[user[inp-1]])
 					lootunseen.pop(lootunseen[user[inp-1]])
 					print(f"you use the luck potion")
+				elif "h" in use[inp-1]:
+					bob = int(use[inp-1][len(use[inp-1]) - 2:])
+					health += int(use[inp-1][len(use[inp-1]) - 2:])
+					loot.pop(loot[user[inp-1]])
+					lootunseen.pop(lootunseen[user[inp-1]])
+					print(f"you heal {bob} you are now at {health}")
 			except:
 				print("error 404: item not found")
 		if desition == 2:
@@ -1629,7 +1872,8 @@ def swamp2():
 			print("your items you can use")
 			print("0 to return")
 			for x in lootunseen:
-				if "c" in x or "h" in x:
+				if "l" in x or "h" in x:
+
 					prinitera += 1
 					print(prinitera,end=" to use: ")
 					print(loot[itera])
@@ -1654,6 +1898,12 @@ def swamp2():
 					loot.pop(loot[user[inp-1]])
 					lootunseen.pop(lootunseen[user[inp-1]])
 					print(f"you use the luck potion")
+				elif "h" in use[inp-1]:
+					bob = int(use[inp-1][len(use[inp-1]) - 2:])
+					health += int(use[inp-1][len(use[inp-1]) - 2:])
+					loot.pop(loot[user[inp-1]])
+					lootunseen.pop(lootunseen[user[inp-1]])
+					print(f"you heal {bob} you are now at {health}")
 			except:
 				print("error 404: item not found")
 		if desition == 2:
@@ -1740,7 +1990,8 @@ def swamp3():
 			print("your items you can use")
 			print("0 to return")
 			for x in lootunseen:
-				if "c" in x or "h" in x:
+				if "l" in x or "h" in x:
+
 					prinitera += 1
 					print(prinitera,end=" to use: ")
 					print(loot[itera])
@@ -1765,6 +2016,12 @@ def swamp3():
 					loot.pop(loot[user[inp-1]])
 					lootunseen.pop(lootunseen[user[inp-1]])
 					print(f"you use the luck potion")
+				elif "h" in use[inp-1]:
+					bob = int(use[inp-1][len(use[inp-1]) - 2:])
+					health += int(use[inp-1][len(use[inp-1]) - 2:])
+					loot.pop(loot[user[inp-1]])
+					lootunseen.pop(lootunseen[user[inp-1]])
+					print(f"you heal {bob} you are now at {health}")
 			except:
 				print("error 404: item not found")
 		if desition == 2:
@@ -1840,7 +2097,8 @@ def mountan1():
 			print("your items you can use")
 			print("0 to return")
 			for x in lootunseen:
-				if "c" in x or "h" in x:
+				if "l" in x or "h" in x:
+
 					prinitera += 1
 					print(prinitera,end=" to use: ")
 					print(loot[itera])
@@ -1865,6 +2123,12 @@ def mountan1():
 					loot.pop(loot[user[inp-1]])
 					lootunseen.pop(lootunseen[user[inp-1]])
 					print(f"you use the luck potion")
+				elif "h" in use[inp-1]:
+					bob = int(use[inp-1][len(use[inp-1]) - 2:])
+					health += int(use[inp-1][len(use[inp-1]) - 2:])
+					loot.pop(loot[user[inp-1]])
+					lootunseen.pop(lootunseen[user[inp-1]])
+					print(f"you heal {bob} you are now at {health}")
 			except:
 				print("error 404: item not found")
 		if desition == 2:
@@ -1946,7 +2210,8 @@ def mountan2():
 			print("your items you can use")
 			print("0 to return")
 			for x in lootunseen:
-				if "c" in x or "h" in x:
+				if "l" in x or "h" in x:
+
 					prinitera += 1
 					print(prinitera,end=" to use: ")
 					print(loot[itera])
@@ -1971,6 +2236,12 @@ def mountan2():
 					loot.pop(loot[user[inp-1]])
 					lootunseen.pop(lootunseen[user[inp-1]])
 					print(f"you use the luck potion")
+				elif "h" in use[inp-1]:
+					bob = int(use[inp-1][len(use[inp-1]) - 2:])
+					health += int(use[inp-1][len(use[inp-1]) - 2:])
+					loot.pop(loot[user[inp-1]])
+					lootunseen.pop(lootunseen[user[inp-1]])
+					print(f"you heal {bob} you are now at {health}")
 			except:
 				print("error 404: item not found")
 		if desition == 2:
@@ -2057,7 +2328,8 @@ def mountan3():
 			print("your items you can use")
 			print("0 to return")
 			for x in lootunseen:
-				if "c" in x or "h" in x:
+				if "l" in x or "h" in x:
+
 					prinitera += 1
 					print(prinitera,end=" to use: ")
 					print(loot[itera])
@@ -2082,6 +2354,12 @@ def mountan3():
 					loot.pop(loot[user[inp-1]])
 					lootunseen.pop(lootunseen[user[inp-1]])
 					print(f"you use the luck potion")
+				elif "h" in use[inp-1]:
+					bob = int(use[inp-1][len(use[inp-1]) - 2:])
+					health += int(use[inp-1][len(use[inp-1]) - 2:])
+					loot.pop(loot[user[inp-1]])
+					lootunseen.pop(lootunseen[user[inp-1]])
+					print(f"you heal {bob} you are now at {health}")
 			except:
 				print("error 404: item not found")
 		if desition == 2:
@@ -2163,7 +2441,8 @@ def mountan4():
 			print("your items you can use")
 			print("0 to return")
 			for x in lootunseen:
-				if "c" in x or "h" in x:
+				if "l" in x or "h" in x:
+
 					prinitera += 1
 					print(prinitera,end=" to use: ")
 					print(loot[itera])
@@ -2188,6 +2467,12 @@ def mountan4():
 					loot.pop(loot[user[inp-1]])
 					lootunseen.pop(lootunseen[user[inp-1]])
 					print(f"you use the luck potion")
+				elif "h" in use[inp-1]:
+					bob = int(use[inp-1][len(use[inp-1]) - 2:])
+					health += int(use[inp-1][len(use[inp-1]) - 2:])
+					loot.pop(loot[user[inp-1]])
+					lootunseen.pop(lootunseen[user[inp-1]])
+					print(f"you heal {bob} you are now at {health}")
 			except:
 				print("error 404: item not found")
 		if desition == 2:
@@ -2274,7 +2559,8 @@ def mountan5():
 			print("your items you can use")
 			print("0 to return")
 			for x in lootunseen:
-				if "c" in x or "h" in x:
+				if "l" in x or "h" in x:
+
 					prinitera += 1
 					print(prinitera,end=" to use: ")
 					print(loot[itera])
@@ -2299,6 +2585,12 @@ def mountan5():
 					loot.pop(loot[user[inp-1]])
 					lootunseen.pop(lootunseen[user[inp-1]])
 					print(f"you use the luck potion")
+				elif "h" in use[inp-1]:
+					bob = int(use[inp-1][len(use[inp-1]) - 2:])
+					health += int(use[inp-1][len(use[inp-1]) - 2:])
+					loot.pop(loot[user[inp-1]])
+					lootunseen.pop(lootunseen[user[inp-1]])
+					print(f"you heal {bob} you are now at {health}")
 			except:
 				print("error 404: item not found")
 		if desition == 2:
@@ -2386,7 +2678,8 @@ def glich1():
 			print("your items you can use")
 			print("0 to return")
 			for x in lootunseen:
-				if "c" in x or "h" in x:
+				if "l" in x or "h" in x:
+
 					prinitera += 1
 					print(prinitera,end=" to use: ")
 					print(loot[itera])
@@ -2418,7 +2711,8 @@ def glich1():
 			print("your items you can use")
 			print("0 to return")
 			for x in lootunseen:
-				if "c" in x or "h" in x:
+				if "l" in x or "h" in x:
+
 					prinitera += 1
 					print(prinitera,end=" to use: ")
 					print(loot[itera])
@@ -2443,6 +2737,12 @@ def glich1():
 					loot.pop(loot[user[inp-1]])
 					lootunseen.pop(lootunseen[user[inp-1]])
 					print(f"you use the luck potion")
+				elif "h" in use[inp-1]:
+					bob = int(use[inp-1][len(use[inp-1]) - 2:])
+					health += int(use[inp-1][len(use[inp-1]) - 2:])
+					loot.pop(loot[user[inp-1]])
+					lootunseen.pop(lootunseen[user[inp-1]])
+					print(f"you heal {bob} you are now at {health}")
 			except:
 				print("error 404: item not found")
 		if desition == 2:
@@ -2530,7 +2830,8 @@ def glich2():## end of hard coded squares
 			print("your items you can use")
 			print("0 to return")
 			for x in lootunseen:
-				if "c" in x or "h" in x:
+				if "l" in x or "h" in x:
+
 					prinitera += 1
 					print(prinitera,end=" to use: ")
 					print(loot[itera])
@@ -2555,6 +2856,12 @@ def glich2():## end of hard coded squares
 					loot.pop(loot[user[inp-1]])
 					lootunseen.pop(lootunseen[user[inp-1]])
 					print(f"you use the luck potion")
+				elif "h" in use[inp-1]:
+					bob = int(use[inp-1][len(use[inp-1]) - 2:])
+					health += int(use[inp-1][len(use[inp-1]) - 2:])
+					loot.pop(loot[user[inp-1]])
+					lootunseen.pop(lootunseen[user[inp-1]])
+					print(f"you heal {bob} you are now at {health}")
 			except:
 				print("error 404: item not found")
 		if desition == 2:
@@ -2672,6 +2979,8 @@ def glichcidicel():#no looky status:no bugs
 	print("you'll have to go thru me")
 	return "final battle"
 def finalbattle():#status: not made
+	print('use the arrow keys to doge the obsicals ---> "="')
+	time.sleep(.5)
 	depth = 0
 	side = 9
 	while True:
@@ -2796,17 +3105,18 @@ def intro():#status:no bugs
 	health = 100
 	coller = ""
 	gointor = 1
-	lootunseen = []
-	while gointor != 2000:
-		for x in range(random.randint(1,gointor)):
-			print("  ",end="")
-		for x in range(round(gointor/20+1)):
-			print([0,1][random.randint(0,1)],end = "")
-		print()
-		time.sleep(random.uniform(0,3/gointor))
-		gointor+=1
-	for x in range(300):
+	global debuging
+	if debuging == False:
+		while gointor != 2000:
+			for x in range(random.randint(1,gointor)):
+				print("  ",end="")
+			for x in range(round(gointor/20+1)):
+				print([0,1][random.randint(0,1)],end = "")
 			print()
+			time.sleep(random.uniform(0,3/gointor))
+			gointor+=1
+		for x in range(300):
+				print()
 	return questens()
 def questens():#status:no bugs
 	global exoshtion
@@ -2968,33 +3278,3 @@ def main():#status:no bugs
 			if go == "die":
 				break
 main()
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
-#UUUUUGGGGGGGGGGGGGGG
