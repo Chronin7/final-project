@@ -43,7 +43,7 @@ class Location:
 
 #best
 goodLoot = [
-	Item("Holy Hand Grenade: instakill", damagebuff=100000000, type="consumable"),
+	Item("Holy Hand Grenade: instakill", damagebuff=100000000000, type="consumable"),
 	Item("RPG: once per battle 20 damage at beginning", predamage=20, type="weapon"),
 	Item("Health + 50 Potion", health=50, type="consumable"),
 	Item("Sten MK II: tends to misfire sometimes has bullets bounce off of target +20% damage", damagebuff=.20, type="weapon"),
@@ -67,8 +67,8 @@ rearer = [
 	Item('Health + 20 potion', health=20, type='consumable'),
 	Item('Slingshot +5% damage', damagebuff=.05, type='weapon'),
 	Item('A 15 foot long pole', health=-2, type='consumable'),
-	Item('clover +1 luck for 3 turns', luck=1, type='consumable'),
-	Item('luck potion +1 luck for 4 turns', luck=1, type='consumable')]
+	Item('clover +1 luck for 3 turns', luck=1, type='timed'),
+	Item('luck potion +1 luck for 4 turns', luck=1, type='timed')]
 
 
 worldTemplate = {
@@ -77,9 +77,9 @@ worldTemplate = {
 	"field2": Location(description="You are in a field of goat heads", itemRarity=1,moves=Moves(west="field3",east="foothills1")),
 	"field3": Location(description="You are in a field of mud",itemRarity=2,moves=Moves(north="forest",east="field2")),
 	"field4": Location(description="You are in a field of molten rice",itemRarity=1, moves=Moves(south="forest")),
-	"field5": Location(description="You are in a field of grass",itemRarity=2,moves=Moves(west="foothill1",east="field6"), monster=Monster(name="flying snake", health=50, damage=10, lootLevel=3)),
+	"field5": Location(description="You are in a field of grass",itemRarity=2,moves=Moves(west="foothills1",east="field6"), monster=Monster(name="flying snake", health=50, damage=10, lootLevel=3)),
 	"field6": Location(description="You are in a field of coconuts",itemRarity=2,moves=Moves(north="foothills2", west="field5")),
-	"foothills1": Location(description="you are in a foothills biome",itemRarity=3,moves=Moves(north="mountain1",south="field1",east="field2",west="field5")),
+	"foothills1": Location(description="you are in a foothills biome",itemRarity=3,moves=Moves(north="mountain1",south="field1",west="field2",east="field5")),
 	"foothills2": Location(description="you are in a foothills biome", itemRarity=2,moves=Moves(east="foothills3", south="field6")),
 	"foothills3": Location(description="you are in a foothills biome", itemRarity=2,moves=Moves(east="swamp1",west="foothills2")),
 	"forest": Location(description="you in big fat forest", itemRarity=3,moves=Moves(north="field4",south="field3"), monster=Monster(name="killer bunny", health=15, damage=10, lootLevel=3)),
@@ -107,7 +107,7 @@ color: str
 name: str
 quest = "To seek the Holy Grail"
 playedAmount = 0
-
+damagebuff=0
 def initGame():
 	global world
 	global location
@@ -192,13 +192,12 @@ def BOD():
 	global playedAmount
 	global color
 	nam = input("""you come to a rope bridge spanning a casum and a man stops you and says "Stop. Who would cross the Bridge of Death must answer me these questions three, ere the other side he see. What... is your name: """)
-	if nam.lower != name.lower:
+	if nam.lower() != name.lower():
 		print("wrong *as you are thrown into the casum")
 		print("you die and aliens take your body and are diapointed that you cant play poker")
-		print("wrong *as you are thrown into the casum*")
-		print("you die and aliens take your body and are disappointed that you cant play poker")
+
 		print("game over")
-		raise "dead"
+		return "dead"
 	else:
 		nam = str(input("What... is your quest: "))
 		if nam.lower().strip() != quest.lower().strip():
@@ -207,24 +206,20 @@ def BOD():
 			print("game over")
 			return "dead"
 		if playedAmount >1:
-			nam = input("What... is the air-speed velocity of an unladen swallow: ").lower
-			if nam == "What do you mean? An African or a European swallow?".lower:
-				print(" Huh? I... I don't know that. AUUUUUUUGGGGGGGGGGGHHH!!")
-				print("you sucsesfully make it across the bridge")
+			nam = input("What... is the air-speed velocity of an unladen swallow: ").lower()
+			if nam == "What do you mean? An African or a European swallow?".lower():
+
 				print(" Huh? I... I don't know that. AUUUUUUUGGGGGGGGGGGHHH!! *as he is thrown into the casum*")
 				print("you successfully make it across the bridge")
 				return "mountain5"
 			else:
 				print("wrong *as you are thrown into the casum")
 				print("you die and joe takes your apendix")
-				print("wrong *as you are thrown into the casum*")
-				print("you die and a goat gives you a wet willy")
 				print("game over")
 				return "dead"
 		else:
-			nam = input("What... is your favourite colour: ").lower
-			nam = input("What... is your favorite colour: ").lower
-			if nam != color:
+			nam = input("What... is your favorite colour: ").lower()
+			if nam != color.lower():
 				print("wrong *as you are thrown into the casum*")
 				print("you die and billy the bird makes you into a nest")
 				print("game over")
@@ -260,10 +255,15 @@ def battle():
 	global health
 	global inventory
 	global location
-
+	predamageItems = [item for item in inventory if item.predamage > 0]
 	monster = location.monster
 	print(f"A {monster.name} appears!")
+	for item in predamageItems:
+		print(f"you used an {item.name} and did {item.predamage} damage")
+		monster.health-=max(item.predamage, 0)
+
 	while True:
+		print(f"The {monster.name} has {monster.health} health left")
 		option = selectOption([
 			("Fight", "fight"),
 			("Use Item", "useItem")
@@ -280,7 +280,6 @@ def battle():
 				inventory.append(item)
 				location.monster = None
 				return True
-			print(f"The {monster.name} has {monster.health} health left")
 		elif option == "useItem":
 			if useItem() == False:
 				continue
