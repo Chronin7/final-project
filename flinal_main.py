@@ -53,7 +53,7 @@ goodLoot = [
 ]
 #worst
 norm = [
-	Item("Nuke Kill All", health=-100000000,damagebuff=34517089, type="consumable"),
+	Item("Nuke Kill All", health=-100000000,damagebuff=0, type="consumable"),
 	Item("Stick +5% damage", damagebuff=.5, type="weapon"),
 	Item("Health +10 potion", health=10, type="consumable"),
 	Item('Deodorant', type='consumable'),
@@ -312,6 +312,10 @@ while True:
 			if location.monster:
 				if battle() == False:
 					break
+			if health<0:
+				print("you died")
+				print("game over")
+				break
 			option = selectOption([
 				("Move", "move"),
 				("Search for loot", "search"),
