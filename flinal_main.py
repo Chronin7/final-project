@@ -239,8 +239,9 @@ def holyGrail():
   File "/Users/allenperl/personal/pythonPlay/game.py", line 106, in randomItem
     raise Exception(f"Invalid rarity {rarity}")
 Exception: Invalid rarity 0""")
-		time.sleep(3)
+		time.sleep(.01)
 		print("BACK FROM THE DEAD CODE")
+		print("hahaha")
 		print("P.S. you win")
 		return "dead"
 	else:
