@@ -1,18 +1,14 @@
 def ascii_art(artify):
-	k=0
+	k=50
 	run = []
 	runer=""
 	import os
-	varsis=os.get_terminal_size().columns
 	artify = str(artify).lower()
-	for x in range(round(varsis/11)):
-		runer+str(artify[x])
-	run.append(runer)
-	itera = 0
 	out1=[]
 	out2=[]
 	out3=[]
 	out4=[]
+	varsis = 1
 	out5=[]
 	for i in run:
 		for x in i:
@@ -338,4 +334,4 @@ def ascii_art(artify):
 		out3=[]
 		out4=[]
 		out5=[]
-ascii_art("hi i am liam joe is bob and lemons are good bob loves kerble space program")
+ascii_art("programer")
