@@ -136,6 +136,7 @@ def move(loc: str):
 				print(f"Your {item.name} has expired")
 				inventory.remove(item)
 	location = world[loc]
+	#print(f'moved to: {location}')
 
 def selectOption(options: List[Tuple[str,any]], cancelable = True, noOptionText = "You can't do that.") -> any:
 	options = [x for x in options if x[1] != None]
@@ -233,12 +234,12 @@ def holyGrail():
 	print("You have found the Holy Grail!")
 	if input("do you drink(y/n):").lower=="y":
 		print("""Traceback (most recent call last):
-  File "/Users/allenperl/personal/pythonPlay/game.py", line 252, in <module>
-    item = randomItem(location.itemRarity)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/allenperl/personal/pythonPlay/game.py", line 106, in randomItem
-    raise Exception(f"Invalid rarity {rarity}")
-Exception: Invalid rarity 0""")
+  File "/Users/this is a joke/personal/pythonPlay/game.py", line ∞, in <all>
+    item = banana
+           ^^^^^^
+  File "/Users/also a joke/personal/pythonPlay/game.py", line ∞, in lemon
+    raise Exception(f"Invalid rarity {good food}")
+Exception: Invalid rarity 2037946809832759832""")
 		time.sleep(.01)
 		print("BACK FROM THE DEAD CODE")
 		print("hahaha")
@@ -294,7 +295,7 @@ def battle():
 playedAmount =0
 while True:
 
-	if input("do you want to play(y/n)")!="y":
+	if input("do you want to play(y/n)").lower()!="y":
 		break
 
 	initGame()
